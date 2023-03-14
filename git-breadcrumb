@@ -1,0 +1,18 @@
+#! /bin/sh
+# Git Breadcrumbs
+
+CURRENT_COMMIT="$(git rev-parse HEAD)"
+CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+SNAPSHOT_BRANCH="breadcrumb-$CURRENT_COMMIT"
+
+# Move to the SNAPSHOT_BRANCH
+
+# Create if not exists
+git rev-parse -q --verify "$SNAPSHOT_BRANCH" > /dev/null || git branch "$SNAPSHOT_BRANCH"
+git symbolic-ref HEAD "refs/heads/$SNAPSHOT_BRANCH"
+
+# Commit everything with a dummy commit message
+git commit -am "autocommit"
+
+# Go back
+git symbolic-ref HEAD "refs/heads/$CURRENT_BRANCH"

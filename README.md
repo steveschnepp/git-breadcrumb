@@ -12,7 +12,7 @@ It creates a dedicated branch, starting from the current commit. And automatical
 
 Usage is very easy: 
 
-Simply call put `git-breadcrumb` in the PATH, and call `git breadcrumb`.
+Simply add the `git-breadcrumb` script in the PATH, and call `git breadcrumb`.
 
 ## Operation Mode
 

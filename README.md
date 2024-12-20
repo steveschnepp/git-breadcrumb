@@ -16,4 +16,4 @@ Simply add the `git-breadcrumb` script in the PATH, and call `git breadcrumb`.
 
 ## Operation Mode
 
-It will automatically create a new branch if it doesn't exist named `breadcrumb-$CURRENT_SHA1`.
+It will automatically update the branch `breadcrumb-$CURRENT_SHA1`, or create it if it doesn't exist yet.

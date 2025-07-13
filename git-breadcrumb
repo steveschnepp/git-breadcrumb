@@ -4,6 +4,7 @@
 CURRENT_COMMIT="$(git rev-parse HEAD)"
 CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 SNAPSHOT_BRANCH="breadcrumb-$CURRENT_COMMIT"
+COMMIT_MESSAGE="echo $@"
 
 # Move to the SNAPSHOT_BRANCH
 
@@ -12,7 +13,8 @@ git rev-parse -q --verify "$SNAPSHOT_BRANCH" > /dev/null || git branch "$SNAPSHO
 git symbolic-ref HEAD "refs/heads/$SNAPSHOT_BRANCH"
 
 # Commit everything with a dummy commit message
-git commit -am "autocommit"
+COMMIT_MESSAGE=${COMMIT_MESSAGE:-autocommit}
+git commit -am "$COMMIT_MESSAGE"
 
 # Go back
 git symbolic-ref HEAD "refs/heads/$CURRENT_BRANCH"
